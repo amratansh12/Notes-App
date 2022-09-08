@@ -29,7 +29,7 @@ function showNote() {
     notesObj.forEach(function (element, index) {
         let displayCard = document.getElementById("displayCard");
         html += `
-            <div class="card cardHolder my-3 text-bg-dark px-4 py-1">
+            <div class="card my-3 text-bg-dark px-4 py-1" id="cardHolder">
                 <div class="card-header">
                     <h5 class="card-title">Note ${index + 1}</h5>
                 </div>
@@ -44,6 +44,7 @@ function showNote() {
 
 //Functioning of the delete button
 function deleteNote(indexOfCardToBeDeleted) {
+    // console.log(`I am deleting note number ${parseInt(indexOfCardToBeDeleted) + 1}`);
     let notes = localStorage.getItem("notes");
     if (notes == null) {
         notesObj = [];
@@ -56,3 +57,18 @@ function deleteNote(indexOfCardToBeDeleted) {
     showNote();
 }
 
+//Functioning of the search button
+let searchBtn = document.getElementById("searchBtn");
+// console.log(searchBtn);
+searchBtn.addEventListener('input', function(e){
+    let notes = localStorage.getItem("notes");
+    if (notes == null) {
+        notesObj = [];
+    }
+    else {
+        notesObj = JSON.parse(notes);
+    }
+    notesObj.forEach(function(element){
+       console.log(element);
+    })
+})
